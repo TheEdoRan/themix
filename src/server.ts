@@ -1,23 +1,25 @@
 import "server-only";
 
-import { cookies } from "next/headers";
-import { ThemixCookieSchema, type ThemixTheme } from "./theme";
+import { type ThemixTheme } from "./types";
 
-export function getThemixServerData() {
-	const parsedThemeCookie = ThemixCookieSchema.safeParse(cookies().get("theme")?.value);
-	let bodyThemeClass = "";
-	let initialTheme: ThemixTheme = "system";
-
-	if (parsedThemeCookie.success) {
-		bodyThemeClass =
-			parsedThemeCookie.data === "dark" || parsedThemeCookie.data === "system-dark" ? "dark" : "";
-		initialTheme = (
-			parsedThemeCookie.data.startsWith("system") ? "system" : parsedThemeCookie.data
-		) as ThemixTheme;
+export function getThemixServerData(value?: string): {
+	bodyThemeClass: "dark" | "";
+	initialTheme: ThemixTheme;
+} {
+	if (
+		value === "light" ||
+		value === "dark" ||
+		value === "system-light" ||
+		value === "system-dark"
+	) {
+		return {
+			bodyThemeClass: value === "dark" || value === "system-dark" ? "dark" : "",
+			initialTheme: (value.startsWith("system") ? "system" : value) as ThemixTheme,
+		};
 	}
 
 	return {
-		bodyThemeClass,
-		initialTheme,
+		bodyThemeClass: "",
+		initialTheme: "system",
 	};
 }

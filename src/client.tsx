@@ -2,7 +2,7 @@
 
 import { setCookie } from "cookies-next";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { type ThemixCookie, type ThemixTheme } from "./theme";
+import { type ThemixCookie, type ThemixTheme } from "./types";
 
 type ThemixContext = {
 	theme: ThemixTheme;

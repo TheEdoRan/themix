@@ -3,5 +3,5 @@ WIP 👀
 ## Installation
 
 ```sh
-npm i themix zod
+npm i themix
 ```
