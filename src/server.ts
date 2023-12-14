@@ -1,11 +1,14 @@
 import "server-only";
 
+import { cookies } from "next/headers";
 import { type ThemixTheme } from "./types";
 
-export function getThemixServerData(value?: string): {
+export function getThemixServerData(): {
 	bodyThemeClass: "dark" | "";
 	initialTheme: ThemixTheme;
 } {
+	const value = cookies().get("theme")?.value;
+
 	if (
 		value === "light" ||
 		value === "dark" ||
