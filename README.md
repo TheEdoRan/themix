@@ -21,17 +21,18 @@ npm i themix
 
 ```tsx
 // layout.tsx
+import { ThemixProvider } from "themix/client";
 import { getThemixServerData } from "themix/server";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const { initialTheme, bodyThemeClass } = getThemixServerData();
 
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en">
       <body className={`${inter.className} ${bodyThemeClass}`}>
-        <ClientProviders initialTheme={initialTheme}>
+        <ThemixProvider initialTheme={initialTheme}>
           {children}
-        </ClientProviders>
+        </ThemixProvider>
       </body>
     </html>
   );
