@@ -21,6 +21,7 @@ npm i themix
 
 ```tsx
 // layout.tsx
+import { ThemixProvider } from "themix/client";
 import { getThemixServerData } from "themix/server";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,9 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={sans.variable}>
       <body className={`${inter.className} ${bodyThemeClass}`}>
-        <ClientProviders initialTheme={initialTheme}>
+        <ThemixProvider initialTheme={initialTheme}>
           {children}
-        </ClientProviders>
+        </ThemixProvider>
       </body>
     </html>
   );
