@@ -6,8 +6,8 @@ A Next.js theme manager that uses cookies to store and manage the switch between
 
 This package was built because storing the cookie in the browser local storage doesn't work too well with Next.js and Server Components. So, with Themix you get:
 
-- Initial load with no flashing
-- No hydration warnings
+- Initial load with no flashing;
+- No hydration warnings.
 
 ## Installation
 
