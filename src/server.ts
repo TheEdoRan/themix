@@ -3,7 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 import { type ThemixCookie, type ThemixTheme } from "./types";
 
-export function setCookieThemeAction(theme: ThemixCookie) {
+export async function setCookieThemeAction(theme: ThemixCookie) {
 	"use server";
 
 	cookies().set("theme", theme, {

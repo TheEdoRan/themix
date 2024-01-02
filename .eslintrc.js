@@ -4,6 +4,15 @@ module.exports = {
 	extends: ["eslint:recommended", "next/core-web-vitals", "prettier"],
 	rules: {
 		"react/no-unescaped-entities": "off",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-empty-interface": "off",
+		"@typescript-eslint/no-floating-promises": "warn",
+		"@typescript-eslint/consistent-type-exports": "warn",
+		"@typescript-eslint/consistent-type-imports": ["error", { fixStyle: "inline-type-imports" }],
 	},
 	overrides: [
 		{
@@ -19,20 +28,7 @@ module.exports = {
 				ecmaVersion: "latest",
 				sourceType: "module",
 			},
-			rules: {
-				"@typescript-eslint/ban-ts-comment": "off",
-				"@typescript-eslint/no-empty-function": "off",
-				"@typescript-eslint/no-unused-vars": "warn",
-				"@typescript-eslint/no-non-null-assertion": "off",
-				"@typescript-eslint/no-explicit-any": "off",
-				"@typescript-eslint/no-empty-interface": "off",
-				"@typescript-eslint/no-floating-promises": "warn",
-				"@typescript-eslint/consistent-type-exports": "warn",
-				"@typescript-eslint/consistent-type-imports": [
-					"error",
-					{ fixStyle: "inline-type-imports" },
-				],
-			},
+			rules: {},
 		},
 	],
 };

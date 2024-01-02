@@ -54,7 +54,7 @@ export function ThemixProvider({ initialTheme, noTransition, children }: Props) 
 				document.body.classList.remove("dark");
 			}
 
-			setCookieThemeAction(theme);
+			void setCookieThemeAction(theme);
 
 			restyle?.();
 		},
