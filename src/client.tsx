@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { setCookieThemeAction } from "./server";
+import { setCookieThemeAction } from "./action";
 import { type ThemixCookie, type ThemixTheme } from "./types";
 
 type ThemixContext = {
@@ -54,9 +54,11 @@ export function ThemixProvider({ initialTheme, noTransition, children }: Props) 
 				document.body.classList.remove("dark");
 			}
 
-			void setCookieThemeAction(theme);
-
-			restyle?.();
+			setCookieThemeAction(theme)
+				.then(() => {
+					restyle?.();
+				})
+				.catch(console.error);
 		},
 		[noTransition]
 	);
