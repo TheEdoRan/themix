@@ -1,7 +1,7 @@
 "use client";
 
-import { setCookie } from "cookies-next";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { setCookieThemeAction } from "./server";
 import { type ThemixCookie, type ThemixTheme } from "./types";
 
 type ThemixContext = {
@@ -54,10 +54,7 @@ export function ThemixProvider({ initialTheme, noTransition, children }: Props) 
 				document.body.classList.remove("dark");
 			}
 
-			setCookie("theme", theme, {
-				maxAge: 60 * 60 * 24 * 365,
-				sameSite: "lax",
-			});
+			setCookieThemeAction(theme);
 
 			restyle?.();
 		},
@@ -70,21 +67,20 @@ export function ThemixProvider({ initialTheme, noTransition, children }: Props) 
 			return;
 		}
 
-		const pref = window.matchMedia("(prefers-color-scheme: dark)");
+		const dark = window.matchMedia("(prefers-color-scheme: dark)");
 
 		// Update on first load.
-		updateClassesSetCookie(pref.matches ? "system-dark" : "system-light");
+		updateClassesSetCookie(dark.matches ? "system-dark" : "system-light");
 
 		// Setup change listener.
 		function handleSystemChange(e: MediaQueryListEvent) {
-			const dark = e.matches;
-			updateClassesSetCookie(dark ? "system-dark" : "system-light");
+			updateClassesSetCookie(e.matches ? "system-dark" : "system-light");
 		}
 
-		pref.addEventListener("change", handleSystemChange);
+		dark.addEventListener("change", handleSystemChange);
 
 		return () => {
-			pref.removeEventListener("change", handleSystemChange);
+			dark.removeEventListener("change", handleSystemChange);
 		};
 	}, [theme, updateClassesSetCookie]);
 
